@@ -79,7 +79,7 @@ header .btn:active { opacity: 0.7; }
 }
 .settings-action-btn:hover { background: #2a2a2a; border-color: #444; }
 
-/* STYLE DES CONDITIONS D'UTILISATION (INTEGRATION DESIGN CHATAURX) */
+/* STYLE DES CONDITIONS D'UTILISATION */
 #termsScreen {
   position: fixed;
   inset: 0;
@@ -352,9 +352,9 @@ header .btn:active { opacity: 0.7; }
 
 /* TYPING INDICATOR */
 .typing-wrapper { display: flex; align-items: center; gap: 10px; padding: 8px 16px; margin-bottom: 12px; }
-.aurx-thinking { width: 36px; height: 36px; position: relative; flex-shrink: 0; overflow: visible; display: flex; align-items: center; justify-content: center; }
-.aurx-thinking img { width: 36px; height: 36px; border-radius: 50%; object-fit: contain; display: block; }
-.aurx-thinking.spinning img { animation: spinNeural 1.2s linear infinite; transform-origin: center center; }
+.infinity-thinking { width: 36px; height: 36px; position: relative; flex-shrink: 0; overflow: visible; display: flex; align-items: center; justify-content: center; }
+.infinity-thinking img { width: 36px; height: 36px; border-radius: 50%; object-fit: contain; display: block; }
+.infinity-thinking.spinning img { animation: spinNeural 1.2s linear infinite; transform-origin: center center; }
 @keyframes spinNeural { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 .typing-text { font-size: 14px; color: #888; opacity: 0; transition: opacity 0.3s; }
 .typing-text.show { opacity: 1; }
@@ -624,7 +624,7 @@ Infinity
     <h3>🔒 Sécurité & Données</h3>
     <div class="setting-item">
       <label>Espace de stockage local</label>
-      <button class="settings-action-btn" onclick="alert('IndexDB nettoyé avec succès !')">Vider le cache des messages</button>
+      <button class="settings-action-btn" onclick="alert('Espace de stockage nettoyé avec succès !')">Vider le cache des messages</button>
       <button class="settings-action-btn" id="exportConvsBtn">Exporter les conversations (.json)</button>
     </div>
   </div>
@@ -636,7 +636,7 @@ Infinity
       <div class="info-text">
         <strong>Firmin - FIRMINX Founder</strong><br>
         Lead Developer & AI Architect, basé en RDC 🇨🇩.<br>
-        L'objectif ultime Infinity est de propulser et de rendre accessible l'IA moderne partout en Afrique.
+        L'objectif ultime d'Infinity est de propulser et de rendre accessible l'IA moderne partout en Afrique.
       </div>
     </div>
     <div class="setting-item">
@@ -779,21 +779,19 @@ document.getElementById('reviewTermsBtn')?.addEventListener('click', () => {
 // === EXPORTATION DES CONVERSATIONS EN JSON ===
 document.getElementById('exportConvsBtn')?.addEventListener('click', () => {
   try {
-    // Récupération des conversations stockées localement
-    const conversations = localStorage.getItem('aurx_conversations');
+    const conversations = localStorage.getItem('infinity_conversations');
 
     if (!conversations || conversations === '[]') {
       alert('Aucune conversation à exporter dans votre historique local.');
       return;
     }
 
-    // Création du fichier téléchargeable au format JSON
     const blob = new Blob([conversations], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
 
     const a = document.createElement('a');
     a.href = url;
-    a.download = `aurx-conversations-${new Date().toISOString().slice(0,10)}.json`;
+    a.download = `infinity-conversations-${new Date().toISOString().slice(0,10)}.json`;
     document.body.appendChild(a);
     a.click();
 
